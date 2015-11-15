@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="EntityToSql/EntityToSql.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="EntityToSql/EntityToSql.cs">
+    <Files>
+      <File FileName="EntityToSql/Program.cs" Line="23" Column="50" />
+      <File FileName="EntityToSql/EntityToSql.cs" Line="16" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

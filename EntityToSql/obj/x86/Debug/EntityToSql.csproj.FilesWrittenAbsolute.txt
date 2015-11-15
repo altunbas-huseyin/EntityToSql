@@ -1,0 +1,8 @@
+/Users/huseyin/Projects/EntityToSql/EntityToSql/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/huseyin/Projects/EntityToSql/EntityToSql/bin/Debug/EntityToSql.exe.mdb
+/Users/huseyin/Projects/EntityToSql/EntityToSql/bin/Debug/EntityToSql.exe
+/Users/huseyin/Projects/EntityToSql/EntityToSql/obj/x86/Debug/EntityToSql.exe
+/Users/huseyin/Projects/EntityToSql/EntityToSql/obj/x86/Debug/EntityToSql.exe.mdb
+/Users/huseyin/Projects/EntityToSql/EntityToSql/bin/Debug/EntityToSql.exe.config
+/Users/huseyin/Projects/EntityToSql/EntityToSql/bin/Debug/EntityFramework.dll
+/Users/huseyin/Projects/EntityToSql/EntityToSql/bin/Debug/EntityFramework.SqlServer.dll
