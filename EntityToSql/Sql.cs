@@ -22,7 +22,8 @@ namespace EntityToSql
 				if (propertyInfo.Name == PrimaryKey) {
 					continue;
 				}
-
+                if (EntityToSql.GetPropertyInfoValues(tip, propertyInfo) == "-1")
+                { continue; }
 				sql += propertyInfo.Name + "=" + EntityToSql.GetPropertyInfoValues (tip, propertyInfo) + ",";
 			}
 			sql = sql.Remove (sql.Length - 1);
@@ -32,6 +33,10 @@ namespace EntityToSql
 
 		static string GetPropertyInfoValues<T> (T tip, PropertyInfo propertyInfo)
 		{
+
+            object o = propertyInfo.GetValue(tip, null); //throws exception TargetParameterCountException for String type
+            if (o == null) { return "-1"; }
+
 			string str = "";
 
 			string FieldValue = propertyInfo.GetValue (tip, null).ToString ();
@@ -87,6 +92,10 @@ namespace EntityToSql
 				if (propertyInfo.Name == PrimaryKey) {
 					continue;
 				}
+
+                object o = propertyInfo.GetValue(tip, null); //throws exception TargetParameterCountException for String type
+                if (o == null) { continue; }
+
 				str += propertyInfo.Name + ",";
 			}
 			return str = str.Remove (str.Length - 1);
@@ -101,9 +110,13 @@ namespace EntityToSql
 					continue;
 				}
 
-				str += GetPropertyInfoValues (tip,propertyInfo);
+                object o = propertyInfo.GetValue(tip, null); //throws exception TargetParameterCountException for String type
+                if (o == null) { continue; }
 
-				str += ",";
+                string val = GetPropertyInfoValues(tip, propertyInfo);
+                if (val == "-1")
+                { continue; }
+                str += val+ ",";
 			}
 			return str = str.Remove (str.Length - 1);
 		}

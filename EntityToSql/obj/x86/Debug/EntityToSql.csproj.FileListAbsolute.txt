@@ -1,0 +1,10 @@
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityToSql.pdb
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityFramework.dll
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityFramework.xml
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\obj\x86\Debug\EntityToSql.csprojResolveAssemblyReference.cache
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\obj\x86\Debug\EntityToSql.pdb
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityToSql.dll.config
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\bin\Debug\EntityToSql.dll
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSql\obj\x86\Debug\EntityToSql.dll

@@ -1,0 +1,5 @@
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSqlV1\obj\Debug\EntityToSqlV1.csprojResolveAssemblyReference.cache
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSqlV1\bin\Debug\EntityToSqlV1.dll
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSqlV1\bin\Debug\EntityToSqlV1.pdb
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSqlV1\obj\Debug\EntityToSqlV1.dll
+C:\Users\huseyin.altunbas\Documents\GitHub\EntityToSql\EntityToSqlV1\obj\Debug\EntityToSqlV1.pdb
