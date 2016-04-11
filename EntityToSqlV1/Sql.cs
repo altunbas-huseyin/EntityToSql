@@ -15,29 +15,44 @@ namespace EntityToSqlV1
         /// <param name="tip">Tip.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
 
-        public static string Update<T>(T tip, String Where, String TableName = "", String PrimaryKey = "")
+        public static string Insert<T>(T tip, String TableName = "", String PrimaryKey = "", String DateTimeFormat="")
         {
             if (TableName == "")
             {
                 TableName = tip.GetType().Name;
             }
-            string sql = "UPDATE TABLE " + TableName + " ";
+
+            string Fields = Sql.GetTablesField(tip, PrimaryKey);
+            string Values = Sql.GetTablesFieldValues(tip, PrimaryKey,DateTimeFormat);
+            string sql = "INSERT INTO " + TableName + " (" + Fields + ") Values(" + Values + ")";
+            sql += " SELECT SCOPE_IDENTITY()";
+            return sql;
+
+        }
+
+        public static string Update<T>(T tip, String TableName = "", String PrimaryKey = "", String DateTimeFormat="")
+        {
+            if (TableName == "")
+            {
+                TableName = tip.GetType().Name;
+            }
+            string sql = "UPDATE " + TableName + " SET ";
             foreach (PropertyInfo propertyInfo in tip.GetType().GetProperties())
             {
                 if (propertyInfo.Name == PrimaryKey)
                 {
                     continue;
                 }
-                if (Sql.GetPropertyInfoValues(tip, propertyInfo) == "-1")
+                if (Sql.GetPropertyInfoValues(tip, propertyInfo,DateTimeFormat) == "-1")
                 { continue; }
-                sql += propertyInfo.Name + "=" + Sql.GetPropertyInfoValues(tip, propertyInfo) + ",";
+                sql += propertyInfo.Name + "=" + Sql.GetPropertyInfoValues(tip, propertyInfo,DateTimeFormat) + ",";
             }
             sql = sql.Remove(sql.Length - 1);
 
-            return sql + " " + Where;
+            return sql + " ";
         }
 
-        static string GetPropertyInfoValues<T>(T tip, PropertyInfo propertyInfo)
+        static string GetPropertyInfoValues<T>(T tip, PropertyInfo propertyInfo, String DateTimeFormat)
         {
 
             object o = propertyInfo.GetValue(tip, null); //throws exception TargetParameterCountException for String type
@@ -62,37 +77,23 @@ namespace EntityToSqlV1
                     str += Sql.Tirnaksiz(FieldValue);
                     break;
                 case "System.Float":
-                    str += Sql.Tirnaksiz(FieldValue);
+                    str += Sql.Tirnaksiz(FieldValue.Replace(",","."));
                     break;
                 case "System.Decimal":
-                    str += Sql.Tirnaksiz(FieldValue);
+                    str += Sql.Tirnaksiz(FieldValue.Replace(",","."));
                     break;
                 case "System.Double":
-                    str += Sql.Tirnaksiz(FieldValue);
+                    str += Sql.Tirnaksiz(FieldValue.Replace(",","."));
                     break;
                 default:
-                    str += Sql.Tirnakli(FieldValue);
+                    str += Sql.Tirnakli(FieldValue,  DateTimeFormat);
                     break;
             }
 
             return str;
         }
 
-        public static string Insert<T>(T tip, String TableName = "", String PrimaryKey = "")
-        {
-            if (TableName == "")
-            {
-                TableName = tip.GetType().Name;
-            }
-
-            string Fields = Sql.GetTablesField(tip, PrimaryKey);
-            string Values = Sql.GetTablesFieldValues(tip, PrimaryKey);
-            string sql = "INSERT INTO " + TableName + " (" + Fields + ") Values(" + Values + ")";
-
-            return sql;
-
-        }
-
+      
         static string GetTablesField<T>(T tip, String PrimaryKey = "")
         {
             string str = "";
@@ -111,7 +112,7 @@ namespace EntityToSqlV1
             return str = str.Remove(str.Length - 1);
         }
 
-        static string GetTablesFieldValues<T>(T tip, String PrimaryKey = "")
+        static string GetTablesFieldValues<T>(T tip, String PrimaryKey = "", String DateTimeFormat="")
         {
             string str = "";
             foreach (PropertyInfo propertyInfo in tip.GetType().GetProperties())
@@ -125,7 +126,7 @@ namespace EntityToSqlV1
                 object o = propertyInfo.GetValue(tip, null); //throws exception TargetParameterCountException for String type
                 if (o == null) { continue; }
 
-                string val = GetPropertyInfoValues(tip, propertyInfo);
+                string val = GetPropertyInfoValues(tip, propertyInfo, DateTimeFormat);
                 if (val == "-1")
                 { continue; }
                 str += val + ",";
@@ -138,8 +139,17 @@ namespace EntityToSqlV1
         /// Tirnakli the specified val.
         /// </summary>
         /// <param name="val">Value.</param>
-        public static string Tirnakli(String val)
+        public static string Tirnakli(String val, String DateTimeFormat)
         {
+            //Burada örneğin 2.3 bir değer gelirse mallaşıyor ve onu datetime a çeviriyor. Ondan dolayı virgül yoksa datetime için işleme alıyorum.
+            DateTime d;
+            if (!val.Contains(","))
+            {
+                if (DateTime.TryParse(val, out d))
+                {
+                    return "'" + d.ToString(DateTimeFormat) + "'";
+                }
+            }
             return "'" + val + "'";
         }
 
